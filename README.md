@@ -187,3 +187,195 @@ Este código é fornecido apenas como **exemplo**.
 Você pode utilizá-lo em projetos próprios, **desde que faça modificações significativas**.
 
 Caso o uso seja praticamente um *copy-paste* — alterando apenas nomes ou detalhes mínimos — **é obrigatório creditar o desenvolvedor original**.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Ludus AI - Intelligent Assistant
+
+## About the Project
+
+**Ludus AI** is an artificial intelligence assistant developed by **PF** as an example project for the **Astral AI** platform. This project demonstrates how to integrate advanced language models into a modern web application, serving as a code reference for developers who want to use the Astral AI API.
+
+The assistant was created to help users with technical support, programming, and technology in general, as part of the **Ludus Launcher** (formerly SubGames) ecosystem.
+
+## Features
+
+- **Advanced AI**: Uses language models via Astral AI (GPT-4 Fast)
+- **Interactive Chat**: Modern and responsive ChatGPT-style interface
+- **Multilingual**: Support for Portuguese (BR/PT) and English
+- **Discord Integration**: Direct link to the Ludus community server
+- **Responsive**: Works seamlessly on desktop and mobile
+- **Real-Time**: Fast and contextualized responses
+
+## Main Resources
+
+- **Conversation History**: Maintains context during the session
+- **Markdown Formatting**: Support for code, links, lists, and rich formatting
+- **Quick Examples**: Clickable cards with ready-made questions
+- **Clear Button**: Resets the conversation at any time
+- **Online Indicator**: Visual status of the API connection
+- **Auto-resize**: Textarea that automatically adjusts to content
+
+## File Structure
+
+```
+ludus-ai/
+├── index.html              # Main page
+├── css/
+│   └── visual_site.css     # Chat styles
+├── js/
+│   └── sistema.js          # Chat logic and API integration
+└── img/
+    └── logo.png            # Ludus Launcher logo
+```
+
+## Technologies Used
+
+- **HTML5**: Semantic structure
+- **CSS3**: Modern styling with animations
+- **JavaScript (Vanilla)**: Logic without frameworks
+- **Astral AI API**: AI infrastructure
+- **GPT-4 Fast**: Language model
+
+## Setup
+
+### Prerequisites
+
+- Modern browser (Chrome, Firefox, Safari, Edge)
+- Local server (optional, but recommended to avoid CORS issues)
+
+### Installation
+
+1. Clone or download the repository
+2. Add your logo at `img/logo.png`
+3. Run with a local server:
+
+```bash
+# Python 3
+python -m http.server 8000
+
+# Node.js (http-server)
+npx http-server -p 8000
+```
+
+4. Access `http://localhost:8000`
+
+### API Configuration
+
+The project comes pre-configured with the Astral AI API. Settings are located in `js/sistema.js`:
+
+```javascript
+const CONFIG = {
+    API_ENDPOINT: 'https://api.astralai.pro/v1/chat',
+    MODEL: 'openai-fast',
+    MAX_TOKENS: 4096,
+    TEMPERATURE: 0.7
+};
+```
+
+## How to Use
+
+1. **Start a Conversation**: Type your message in the text box
+2. **Send**: Press `Enter` or click the send button
+3. **Quick Examples**: Click one of the example cards
+4. **Clear Chat**: Use the "Clear" button at the top
+5. **Discord**: Click the "Ludus Launcher" card to access the server
+
+## Customization
+
+### Colors
+
+Edit the color variables in `css/visual_site.css`:
+
+```css
+background: #000;           /* Main background */
+border: 1px solid #333;     /* Borders */
+color: #fff;                /* Main text */
+```
+
+### System Message
+
+Customize the AI's personality in `js/sistema.js`:
+
+```javascript
+SYSTEM_MESSAGE: `You are Ludus_AI, an assistant...`
+```
+
+## Astral AI Integration Example
+
+This project serves as a complete integration example with the Astral AI API:
+
+```javascript
+const response = await fetch(CONFIG.API_ENDPOINT, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${CONFIG.API_KEY}`
+    },
+    body: JSON.stringify({
+        model: CONFIG.MODEL,
+        messages: [
+            { role: 'system', content: CONFIG.SYSTEM_MESSAGE },
+            ...conversationHistory
+        ],
+        temperature: CONFIG.TEMPERATURE,
+        max_tokens: CONFIG.MAX_TOKENS,
+        stream: false
+    })
+});
+```
+
+## Important Links
+
+- **Ludus Launcher Site**: https://sub-games.netlify.app/
+- **Ludus Discord**: https://discord.gg/b2eaKnny2E
+- **Astral Discord**: https://discord.gg/px5MJpdcn5
+- **Astral AI**: https://astralai.pro/
+
+## Error Handling
+
+The system includes handling for:
+
+- Connection errors (CORS/Network)
+- Authentication errors (Invalid API Key)
+- Rate limit exceeded
+- Invalid API response
+
+## Security
+
+- The API Key is encoded in Base64 (not 100% secure)
+- **Recommendation**: For production, use a backend intermediary
+- Do not expose the API Key directly in the frontend
+
+## Responsiveness
+
+The design is fully responsive with the following breakpoints:
+
+- **Desktop**: Maximum content width of 800px
+- **Tablet**: Grid and padding adjustments
+- **Mobile**: Single-column layout, larger buttons
+
+## Example Project
+
+This is an **official example project** created specifically to demonstrate the capabilities of **Astral AI**. The code can be used as a base to develop your own AI-powered applications, serving as a reference for integration best practices and frontend development.
+
+## Contributing
+
+Created and maintained by **PF** — Portuguese Developer
+
+For suggestions or issues, join the community Discord.
+
+## License
+
+This project is part of the Ludus Launcher ecosystem and serves as a code example for the Astral AI platform.
+
+---
+
+**Developed by PF** | Powered by Astral AI
+
+---
+
+This code is provided solely as an **example**.  
+You are free to use it in your own projects, **as long as you make significant modifications**.
+
+If the usage is essentially a *copy-paste* — changing only names or minor details — **crediting the original developer is required**.
